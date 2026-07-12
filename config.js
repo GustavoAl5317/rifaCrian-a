@@ -13,7 +13,7 @@ window.CONFIG_RIFA = {
   // Número de WhatsApp do responsável (com DDI + DDD, somente dígitos).
   // Exemplo Brasil: 55 (país) + 11 (DDD) + 999999999 (número) => "5511999999999"
   // >>> TROQUE pelo WhatsApp real do responsável pela rifa <<<
-  whatsapp: "5500000000000",
+  whatsapp: "5511972363949",
 
   // Chave PIX exibida no site
   chavePix: "rafapedrozo.s@gmail.com",
