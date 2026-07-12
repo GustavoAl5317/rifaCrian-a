@@ -13,7 +13,7 @@
 <body>
   <main class="page">
     <!-- ================= CABEÇALHO / CARTAZ ================= -->
-    <header class="hero">
+    <header class="hero card">
       <div class="balloons balloons-left" aria-hidden="true">🎈🎈</div>
       <div class="balloons balloons-right" aria-hidden="true">🎈🎈</div>
 
@@ -33,61 +33,78 @@
       </div>
     </header>
 
-    <!-- ================= PRÊMIO ================= -->
-    <section class="premio card">
-      <span class="premio-ribbon">PRÊMIO</span>
-      <h2 class="premio-nome">BOLSA + CARTEIRA</h2>
-      <p class="premio-grife">de Grife!</p>
-      <p class="premio-ilustrativa">👜 Imagem meramente ilustrativa</p>
-    </section>
+    <!-- ================= LAYOUT DE DUAS COLUNAS ================= -->
+    <div class="conteudo">
 
-    <!-- ================= STATUS / RESUMO ================= -->
-    <section class="resumo">
-      <div class="resumo-item disponivel">
-        <span class="dot"></span> Disponível: <strong id="qtd-disponivel">100</strong>
+      <!-- ---------- COLUNA ESQUERDA: INFORMAÇÕES ---------- -->
+      <div class="coluna coluna-info">
+
+        <!-- PRÊMIO -->
+        <section class="premio card">
+          <span class="premio-ribbon">PRÊMIO</span>
+          <h2 class="premio-nome">BOLSA + CARTEIRA</h2>
+          <p class="premio-grife">de Grife!</p>
+
+          <figure class="premio-foto">
+            <img src="assets/premio.png" alt="Bolsa Guess e carteira Tommy Hilfiger" loading="lazy" />
+          </figure>
+
+          <div class="premio-thumbs">
+            <img src="assets/bolsa.png" alt="Bolsa Guess" loading="lazy" />
+            <img src="assets/carteira.png" alt="Carteira Tommy Hilfiger" loading="lazy" />
+          </div>
+          <p class="premio-ilustrativa">Fotos reais do prêmio ✨</p>
+        </section>
+
+        <!-- PIX -->
+        <section class="pix card">
+          <h2 class="pix-titulo">💠 PAGAMENTO VIA PIX</h2>
+          <p class="pix-label">Chave PIX:</p>
+          <div class="pix-chave">
+            <span id="pix-chave-txt">rafapedrozo.s@gmail.com</span>
+            <button id="btn-copiar-pix" class="btn-copiar" title="Copiar chave PIX">Copiar</button>
+          </div>
+        </section>
+
+        <!-- MENSAGENS -->
+        <section class="mensagens">
+          <p class="msg-roxa">PARTICIPE E AJUDE A FAZER UM DIA INESQUECÍVEL PARA NOSSAS CRIANÇAS! ♥</p>
+          <p class="msg-igreja">⛪ O SORTEIO SERÁ REALIZADO <strong>APÓS O FECHAMENTO DA RIFA</strong> EM NOSSA IGREJA.</p>
+        </section>
       </div>
-      <div class="resumo-item vendido">
-        <span class="dot"></span> Comprado: <strong id="qtd-vendido">0</strong>
+
+      <!-- ---------- COLUNA DIREITA: JOGO ---------- -->
+      <div class="coluna coluna-jogo">
+
+        <!-- RESUMO -->
+        <section class="resumo">
+          <div class="resumo-item disponivel">
+            <span class="dot"></span> Disponível: <strong id="qtd-disponivel">100</strong>
+          </div>
+          <div class="resumo-item vendido">
+            <span class="dot"></span> Comprado: <strong id="qtd-vendido">0</strong>
+          </div>
+          <div class="resumo-item selecionado">
+            <span class="dot"></span> Selecionado: <strong id="qtd-selecionado">0</strong>
+          </div>
+        </section>
+
+        <!-- GRADE -->
+        <section class="numeros card">
+          <h2 class="section-title">Escolha seus números</h2>
+          <p class="section-help">Toque nos <strong>disponíveis</strong>. Os com 🍭 já estão comprados.</p>
+          <div id="grade" class="grade" role="group" aria-label="Números da rifa"></div>
+        </section>
+
+        <!-- AÇÃO -->
+        <section class="acao card">
+          <p class="acao-selecionados">Selecionados: <span id="lista-selecionados">nenhum</span></p>
+          <p class="acao-total">Total: <strong id="valor-total">R$ 0,00</strong></p>
+          <button id="btn-comprar" class="btn-whats" disabled>📲 Comprar pelo WhatsApp</button>
+          <p class="acao-nota">Você será direcionado ao WhatsApp do responsável para confirmar o pagamento via PIX.</p>
+        </section>
       </div>
-      <div class="resumo-item selecionado">
-        <span class="dot"></span> Selecionado: <strong id="qtd-selecionado">0</strong>
-      </div>
-    </section>
-
-    <!-- ================= GRADE DE NÚMEROS ================= -->
-    <section class="numeros card">
-      <h2 class="section-title">Escolha seus números</h2>
-      <p class="section-help">Toque nos números <strong>disponíveis</strong> para selecionar. Os <strong>comprados</strong> ficam bloqueados.</p>
-      <div id="grade" class="grade" role="group" aria-label="Números da rifa"></div>
-    </section>
-
-    <!-- ================= AÇÃO DE COMPRA ================= -->
-    <section class="acao card">
-      <p class="acao-selecionados">
-        Selecionados: <span id="lista-selecionados">nenhum</span>
-      </p>
-      <p class="acao-total">Total: <strong id="valor-total">R$ 0,00</strong></p>
-      <button id="btn-comprar" class="btn-whats" disabled>
-        📲 Comprar pelo WhatsApp
-      </button>
-      <p class="acao-nota">Você será direcionado ao WhatsApp do responsável para confirmar o pagamento via PIX.</p>
-    </section>
-
-    <!-- ================= PAGAMENTO ================= -->
-    <section class="pix card">
-      <h2 class="pix-titulo">💠 PAGAMENTO VIA PIX</h2>
-      <p class="pix-label">Chave PIX:</p>
-      <div class="pix-chave">
-        <span id="pix-chave-txt">rafapedrozo.s@gmail.com</span>
-        <button id="btn-copiar-pix" class="btn-copiar" title="Copiar chave PIX">Copiar</button>
-      </div>
-    </section>
-
-    <!-- ================= MENSAGENS ================= -->
-    <section class="mensagens">
-      <p class="msg-roxa">PARTICIPE E AJUDE A FAZER UM DIA INESQUECÍVEL PARA NOSSAS CRIANÇAS! ♥</p>
-      <p class="msg-igreja">⛪ O SORTEIO SERÁ REALIZADO <strong>APÓS O FECHAMENTO DA RIFA</strong> EM NOSSA IGREJA.</p>
-    </section>
+    </div>
 
     <footer class="rodape">
       SUA PARTICIPAÇÃO TRANSFORMA SORRISOS E CONSTRÓI UM FUTURO MELHOR! ✨
@@ -101,7 +118,6 @@
       <button id="fechar-admin" class="fechar-modal" aria-label="Fechar">✕</button>
       <h2 class="admin-titulo">🔑 Área do Responsável</h2>
 
-      <!-- Login -->
       <div id="admin-login" class="admin-login">
         <p>Digite a senha para gerenciar os números:</p>
         <input type="password" id="admin-senha" placeholder="Senha" autocomplete="current-password" />
@@ -109,9 +125,8 @@
         <p id="admin-erro" class="admin-erro" hidden>Senha incorreta.</p>
       </div>
 
-      <!-- Painel -->
       <div id="admin-painel" class="admin-painel" hidden>
-        <p class="admin-help">Toque em um número para alternar entre <strong>disponível</strong> e <strong>comprado</strong>.</p>
+        <p class="admin-help">Toque em um número para alternar entre <strong>disponível</strong> e <strong>comprado 🍭</strong>.</p>
         <div id="grade-admin" class="grade grade-admin"></div>
         <div class="admin-acoes">
           <button id="btn-salvar-admin" class="btn-whats">💾 Salvar alterações</button>
