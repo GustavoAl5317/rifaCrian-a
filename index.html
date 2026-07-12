@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rifa Dia das Crianças — Da Nossa Igreja</title>
+  <meta name="description" content="Rifa Dia das Crianças da nossa igreja. Escolha seus números disponíveis e participe!" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="page">
+    <!-- ================= CABEÇALHO / CARTAZ ================= -->
+    <header class="hero">
+      <div class="balloons balloons-left" aria-hidden="true">🎈🎈</div>
+      <div class="balloons balloons-right" aria-hidden="true">🎈🎈</div>
+
+      <div class="hero-title">
+        <span class="ribbon">RIFA</span>
+        <h1 class="title-script">Dia das</h1>
+        <h1 class="title-crianças">
+          <span class="c1">C</span><span class="c2">R</span><span class="c3">I</span><span class="c4">A</span><span class="c5">N</span><span class="c6">Ç</span><span class="c7">A</span><span class="c8">S</span>
+        </h1>
+        <span class="subtitle-bar">DA NOSSA IGREJA ♥</span>
+        <p class="tagline">FAZER O BEM TAMBÉM É COISA DE CRIANÇA!</p>
+      </div>
+
+      <div class="valor-tag">
+        <span class="valor-label">VALOR:</span>
+        <span class="valor-num">R$ <strong>30</strong><sup>,00</sup></span>
+      </div>
+    </header>
+
+    <!-- ================= PRÊMIO ================= -->
+    <section class="premio card">
+      <span class="premio-ribbon">PRÊMIO</span>
+      <h2 class="premio-nome">BOLSA + CARTEIRA</h2>
+      <p class="premio-grife">de Grife!</p>
+      <p class="premio-ilustrativa">👜 Imagem meramente ilustrativa</p>
+    </section>
+
+    <!-- ================= STATUS / RESUMO ================= -->
+    <section class="resumo">
+      <div class="resumo-item disponivel">
+        <span class="dot"></span> Disponível: <strong id="qtd-disponivel">100</strong>
+      </div>
+      <div class="resumo-item vendido">
+        <span class="dot"></span> Comprado: <strong id="qtd-vendido">0</strong>
+      </div>
+      <div class="resumo-item selecionado">
+        <span class="dot"></span> Selecionado: <strong id="qtd-selecionado">0</strong>
+      </div>
+    </section>
+
+    <!-- ================= GRADE DE NÚMEROS ================= -->
+    <section class="numeros card">
+      <h2 class="section-title">Escolha seus números</h2>
+      <p class="section-help">Toque nos números <strong>disponíveis</strong> para selecionar. Os <strong>comprados</strong> ficam bloqueados.</p>
+      <div id="grade" class="grade" role="group" aria-label="Números da rifa"></div>
+    </section>
+
+    <!-- ================= AÇÃO DE COMPRA ================= -->
+    <section class="acao card">
+      <p class="acao-selecionados">
+        Selecionados: <span id="lista-selecionados">nenhum</span>
+      </p>
+      <p class="acao-total">Total: <strong id="valor-total">R$ 0,00</strong></p>
+      <button id="btn-comprar" class="btn-whats" disabled>
+        📲 Comprar pelo WhatsApp
+      </button>
+      <p class="acao-nota">Você será direcionado ao WhatsApp do responsável para confirmar o pagamento via PIX.</p>
+    </section>
+
+    <!-- ================= PAGAMENTO ================= -->
+    <section class="pix card">
+      <h2 class="pix-titulo">💠 PAGAMENTO VIA PIX</h2>
+      <p class="pix-label">Chave PIX:</p>
+      <div class="pix-chave">
+        <span id="pix-chave-txt">rafapedrozo.s@gmail.com</span>
+        <button id="btn-copiar-pix" class="btn-copiar" title="Copiar chave PIX">Copiar</button>
+      </div>
+    </section>
+
+    <!-- ================= MENSAGENS ================= -->
+    <section class="mensagens">
+      <p class="msg-roxa">PARTICIPE E AJUDE A FAZER UM DIA INESQUECÍVEL PARA NOSSAS CRIANÇAS! ♥</p>
+      <p class="msg-igreja">⛪ O SORTEIO SERÁ REALIZADO <strong>APÓS O FECHAMENTO DA RIFA</strong> EM NOSSA IGREJA.</p>
+    </section>
+
+    <footer class="rodape">
+      SUA PARTICIPAÇÃO TRANSFORMA SORRISOS E CONSTRÓI UM FUTURO MELHOR! ✨
+      <button id="link-admin" class="link-admin">Área do responsável</button>
+    </footer>
+  </main>
+
+  <!-- ================= PAINEL DO RESPONSÁVEL (ADMIN) ================= -->
+  <div id="admin-overlay" class="overlay" hidden>
+    <div class="admin-modal card">
+      <button id="fechar-admin" class="fechar-modal" aria-label="Fechar">✕</button>
+      <h2 class="admin-titulo">🔑 Área do Responsável</h2>
+
+      <!-- Login -->
+      <div id="admin-login" class="admin-login">
+        <p>Digite a senha para gerenciar os números:</p>
+        <input type="password" id="admin-senha" placeholder="Senha" autocomplete="current-password" />
+        <button id="btn-entrar-admin" class="btn-whats">Entrar</button>
+        <p id="admin-erro" class="admin-erro" hidden>Senha incorreta.</p>
+      </div>
+
+      <!-- Painel -->
+      <div id="admin-painel" class="admin-painel" hidden>
+        <p class="admin-help">Toque em um número para alternar entre <strong>disponível</strong> e <strong>comprado</strong>.</p>
+        <div id="grade-admin" class="grade grade-admin"></div>
+        <div class="admin-acoes">
+          <button id="btn-salvar-admin" class="btn-whats">💾 Salvar alterações</button>
+          <button id="btn-limpar-admin" class="btn-secundario">Liberar todos</button>
+        </div>
+        <p class="admin-sync-info">Os números comprados ficam salvos neste navegador. Veja o <code>README</code> para sincronizar entre celulares.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
