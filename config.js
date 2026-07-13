@@ -26,8 +26,8 @@ window.CONFIG_RIFA = {
   // Preencha para que os números vendidos apareçam iguais em TODOS os
   // aparelhos, em tempo real. Deixe em branco ("") para usar só o navegador.
   // Passo a passo completo no README.
-  supabaseUrl: "",      // ex: https://abcdefgh.supabase.co
-  supabaseAnonKey: "",  // a chave "anon public" do projeto
+  supabaseUrl: "https://rlivolrbevxtknhziagp.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsaXZvbHJiZXZ4dGtuaHppYWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM4OTE2ODEsImV4cCI6MjA5OTQ2NzY4MX0.NkSYO_pT6_TliRjJhl51XRyxBpDlqrwCB57PuPO2cHs",
 
   // Números JÁ COMPRADOS por padrão (aparecem bloqueados para todos).
   // Ex.: [7, 15, 42]. Deixe [] se ninguém comprou ainda.
