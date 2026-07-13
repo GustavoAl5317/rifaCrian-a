@@ -19,7 +19,15 @@ window.CONFIG_RIFA = {
   chavePix: "rafapedrozo.s@gmail.com",
 
   // Senha da "Área do responsável" (troque por uma senha só sua)
+  // IMPORTANTE: use a MESMA senha no SQL do Supabase (veja o README).
   senhaAdmin: "rifa2026",
+
+  // -------- SINCRONIZAÇÃO NA NUVEM (Supabase) --------
+  // Preencha para que os números vendidos apareçam iguais em TODOS os
+  // aparelhos, em tempo real. Deixe em branco ("") para usar só o navegador.
+  // Passo a passo completo no README.
+  supabaseUrl: "",      // ex: https://abcdefgh.supabase.co
+  supabaseAnonKey: "",  // a chave "anon public" do projeto
 
   // Números JÁ COMPRADOS por padrão (aparecem bloqueados para todos).
   // Ex.: [7, 15, 42]. Deixe [] se ninguém comprou ainda.

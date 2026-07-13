@@ -33,14 +33,58 @@ Abra o arquivo **`config.js`** e ajuste:
 
 Pronto — quem abrir o site verá esses números bloqueados.
 
-## 📱 Importante sobre a sincronização
+## 📱 Sincronização entre celulares (Supabase)
 
-Por padrão, os números marcados na "Área do responsável" ficam salvos **no navegador do próprio responsável** (via `localStorage`). Isso funciona muito bem quando **uma pessoa** cuida da rifa sempre pelo **mesmo aparelho**.
+Há **dois modos** de funcionamento:
 
-Se você quiser que a marcação apareça igual em **qualquer celular**, há duas opções:
+- **Modo navegador (padrão):** se você deixar `supabaseUrl` e `supabaseAnonKey` em branco no `config.js`, os números vendidos ficam salvos **só no navegador do responsável**. Bom para testes, mas **não** aparece para os compradores em outros aparelhos.
+- **Modo nuvem (recomendado):** ao configurar o Supabase (abaixo), os números vendidos ficam **na nuvem** e aparecem iguais para **todos**, em **tempo real** — quando o responsável salva, o site de todo mundo atualiza sozinho.
 
-1. **Simples (recomendado para igreja):** o responsável mantém os números vendidos na lista `numerosVendidos` do `config.js` e sobe a alteração (ou pede para alguém subir). Todo mundo passa a ver a lista atualizada.
-2. **Automático:** conectar a um banco de dados gratuito (ex.: Firebase). O código já está organizado para isso — é só pedir ajuda para plugar.
+### ☁️ Como ligar a sincronização (grátis, ~10 min)
+
+1. Crie uma conta em **https://supabase.com** e clique em **New project** (plano gratuito serve). Guarde a senha do banco.
+2. Aguarde o projeto ficar pronto. No menu, abra **SQL Editor → New query**, cole o código abaixo e clique em **Run**.
+   > Antes de rodar, **troque `TROQUE_ESTA_SENHA`** pela mesma senha que você usa no `senhaAdmin` do `config.js`.
+
+   ```sql
+   -- 1) Tabela com o estado da rifa (uma linha só)
+   create table if not exists rifa_estado (
+     id text primary key,
+     vendidos jsonb not null default '[]'
+   );
+   insert into rifa_estado (id, vendidos) values ('principal', '[]')
+     on conflict (id) do nothing;
+
+   -- 2) Segurança: todos podem LER; ninguém escreve direto na tabela
+   alter table rifa_estado enable row level security;
+   drop policy if exists "leitura publica" on rifa_estado;
+   create policy "leitura publica" on rifa_estado for select using (true);
+
+   -- 3) Função para salvar, protegida por senha
+   create or replace function salvar_vendidos(nova_lista jsonb, senha text)
+   returns void language plpgsql security definer as $$
+   begin
+     if senha <> 'TROQUE_ESTA_SENHA' then
+       raise exception 'Senha incorreta';
+     end if;
+     update rifa_estado set vendidos = nova_lista where id = 'principal';
+   end; $$;
+
+   -- 4) Liga o tempo real na tabela
+   alter publication supabase_realtime add table rifa_estado;
+   ```
+
+3. No menu, vá em **Project Settings → API** e copie:
+   - **Project URL** (ex.: `https://abcdefgh.supabase.co`)
+   - **anon public** (a chave pública)
+4. Cole esses dois valores no `config.js`:
+   ```js
+   supabaseUrl: "https://abcdefgh.supabase.co",
+   supabaseAnonKey: "COLE_A_CHAVE_ANON_AQUI",
+   ```
+5. Publique o site (GitHub Pages/Netlify/Vercel). Pronto! ✅ Agora, quando o responsável marcar números e clicar em **Salvar**, todos os aparelhos veem na hora.
+
+> 🔒 **Sobre segurança:** só quem tem a senha consegue alterar os números (a alteração passa pela função protegida). Os compradores só conseguem **ler**. Use uma senha só sua e mantenha a mesma nos dois lugares (`config.js` e o SQL).
 
 ## 🚀 Como publicar (grátis) com GitHub Pages
 
